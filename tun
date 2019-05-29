@@ -12,6 +12,11 @@ if eth0_full=$(ifconfig eth0 2>/dev/null); then
     printf "${YELLOW}eth0${NO_COLOR}\n%s\n" "$eth0"
 fi
 
+if tap0_full=$(ifconfig tap0 2>/dev/null); then
+    tap0=$(echo $tap0_full | grep inet | cut -d" " -f10 | head -1)
+    printf "${YELLOW}tap0${NO_COLOR}\n%s\n" "$tap0"
+fi
+
 if tun0_full=$(ifconfig tun0 2>/dev/null); then
     tun0=$(echo $tun0_full | grep inet | cut -d" " -f10 | head -1)
     printf "${YELLOW}tun0${NO_COLOR}\n%s\n" "$tun0"
