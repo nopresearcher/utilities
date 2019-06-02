@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# set colors
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+NO_COLOR='\033[0m'
+CLEAR_LINE='\r\033[K'
+
+public=$(curl -s ifconfig.io)
+printf "${YELLOW}public IP${NO_COLOR}\n%s\n" "$public"
