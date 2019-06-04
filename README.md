@@ -11,3 +11,7 @@ quick script to pull public IP.
 
 ## revshell-php
 copies Pentest Monkey's PHP reverse shell to current directory and replaces the IP with tun0 or eth0 and renames the file
+
+## servme
+
+performs an ls of a directory and provides easy to copy wget lines and then starts python SimpleHTTPServer
