@@ -1,3 +1,5 @@
+Add to your $PATH to make it easy
+
 # utilities
 misc. utilities
 
