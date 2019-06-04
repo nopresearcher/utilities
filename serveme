@@ -9,27 +9,27 @@ CLEAR_LINE='\r\033[K'
 
 if eth0_full=$(ifconfig eth0 2>/dev/null); then
     eth0=$(echo $eth0_full | grep inet | cut -d" " -f6 | head -1)
-    for f in *; do printf "wget http://$eth0:8000${f}\n"; done 
+    for f in *; do printf "wget http://$eth0:8000/${f}\n"; done 
 fi
 
 if eth1_full=$(ifconfig eth1 2>/dev/null); then
     eth1=$(echo $eth1_full | grep inet | cut -d" " -f6 | head -1)
-    for f in *; do printf "wget http://$eth1:8000${f}\n"; done 
+    for f in *; do printf "wget http://$eth1:8000/${f}\n"; done 
 fi
 
 if wlan0_full=$(ifconfig wlan0 2>/dev/null); then
     wlan0=$(echo $wlan0_full | grep inet | cut -d" " -f6 | head -1)
-    for f in *; do printf "wget http://$wlan0:8000${f}\n"; done 
+    for f in *; do printf "wget http://$wlan0:8000/${f}\n"; done 
 fi
 
 if tap0_full=$(ifconfig tap0 2>/dev/null); then
     tap0=$(echo $tap0_full | grep inet | cut -d" " -f6 | head -1)
-    for f in *; do printf "wget http://$tap0:8000${f}\n"; done 
+    for f in *; do printf "wget http://$tap0:8000/${f}\n"; done 
 fi
 
 if tun0_full=$(ifconfig tun0 2>/dev/null); then
     tun0=$(echo $tun0_full | grep inet | cut -d" " -f6 | head -1)
-    for f in *; do printf "wget http://$tun0:8000${f}\n"; done 
+    for f in *; do printf "wget http://$tun0:8000/${f}\n"; done 
 fi
 python -m SimpleHTTPServer
 
