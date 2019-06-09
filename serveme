@@ -7,27 +7,32 @@ YELLOW='\033[0;33m'
 NO_COLOR='\033[0m'
 CLEAR_LINE='\r\033[K'
 
-if eth0_full=$(ifconfig eth0 2>/dev/null); then
+if /sbin/ethtool eth0 2>/dev/null | grep -q "Link detected: yes"; then
+    eth0_full=$(ifconfig eth0 2>/dev/null)
     eth0=$(echo $eth0_full | grep inet | cut -d" " -f6 | head -1)
     for f in *; do printf "wget http://$eth0:8080/${f}\n"; done 
 fi
 
-if eth1_full=$(ifconfig eth1 2>/dev/null); then
+if /sbin/ethtool eth1 2>/dev/null | grep -q "Link detected: yes"; then
+    eth1_full=$(ifconfig eth1 2>/dev/null)
     eth1=$(echo $eth1_full | grep inet | cut -d" " -f6 | head -1)
     for f in *; do printf "wget http://$eth1:8080/${f}\n"; done 
 fi
 
-if wlan0_full=$(ifconfig wlan0 2>/dev/null); then
+if /sbin/ethtool wlan0 2>/dev/null | grep -q "Link detected: yes"; then
+    wlan0_full=$(ifconfig wlan0 2>/dev/null)
     wlan0=$(echo $wlan0_full | grep inet | cut -d" " -f6 | head -1)
     for f in *; do printf "wget http://$wlan0:8080/${f}\n"; done 
 fi
 
-if tap0_full=$(ifconfig tap0 2>/dev/null); then
+if /sbin/ethtool tap0 2>/dev/null | grep -q "Link detected: yes"; then
+    tap0_full=$(ifconfig tap0 2>/dev/null)
     tap0=$(echo $tap0_full | grep inet | cut -d" " -f6 | head -1)
     for f in *; do printf "wget http://$tap0:8080/${f}\n"; done 
 fi
 
-if tun0_full=$(ifconfig tun0 2>/dev/null); then
+if /sbin/ethtool tun0 2>/dev/null | grep -q "Link detected: yes"; then
+    tun0_full=$(ifconfig tun0 2>/dev/null)
     tun0=$(echo $tun0_full | grep inet | cut -d" " -f6 | head -1)
     for f in *; do printf "wget http://$tun0:8080/${f}\n"; done 
 fi
